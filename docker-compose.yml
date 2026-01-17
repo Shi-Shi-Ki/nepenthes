@@ -1,0 +1,35 @@
+version: "3"
+services:
+  db:
+    image: mysql:8.4
+    volumes:
+      - db-store:/var/lib/mysql
+      - ./logs:/var/log/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_USER_PASS}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASS}
+      - TZ=${TIMEZONE}
+    ports:
+      - ${DB_PORT}:3306
+    networks:
+      - app-network
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "${KVS_PORT}:6379"
+    volumes:
+      - kvs-store:/data
+    networks:
+      - app-network
+
+volumes:
+  db-store:
+  kvs-store:
+
+networks:
+  app-network:
+    driver: bridge
