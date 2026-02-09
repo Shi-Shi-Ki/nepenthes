@@ -71,7 +71,7 @@ module "ingress" {
 # Google連携 (APIGW -> SNS -> SQS)
 module "google_integration" {
   source = "../../modules/integration/google"
-  env    = "prod"
+  env    = "staging"
 
   waf_acl_arn = module.security.waf_acl_arn # API Gatewayにも同じWAFを適用
 }
@@ -79,10 +79,25 @@ module "google_integration" {
 # Compute (Lambdaなど)
 module "compute" {
   source = "../../modules/compute"
-  env    = "prod"
+  env    = "staging"
 
   # LambdaがSQSをトリガーにするためにARNを渡す
   webhook_sqs_arn = module.google_integration.sqs_queue_arn
 
   # ... 他の変数
+}
+
+# --- Security (WAF & ACM) ---
+module "security" {
+  source = "../../modules/security"
+
+  env = "staging"
+
+  # API GatewayやALBで使用するドメイン名
+  # ※Route53で管理しているドメインである必要があります
+  domain_name = "stg-api.smartin.com"
+
+  # Route53のホストゾーンID
+  # (AWSコンソールのRoute53 > ホストゾーン から確認して書き換えてください)
+  zone_id = "Z0123456789ABCDEF"
 }
