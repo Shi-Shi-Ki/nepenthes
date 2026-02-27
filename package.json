@@ -5,10 +5,14 @@
   "main": "index.js",
   "scripts": {
     "build": "turbo run build",
-    "stg": "turbo run stg",
+    "dev": "turbo run dev",
     "lint": "turbo run lint",
     "test": "turbo run test",
-    "clean": "turbo run clean"
+    "clean": "turbo run clean",
+    "dev:api": "turbo run dev --filter=@nepenthes/api",
+    "dev:web": "turbo run dev --filter=@nepenthes/frontend",
+    "build:api": "turbo run build --filter=@nepenthes/api",
+    "build:web": "turbo run build --filter=@nepenthes/frontend"
   },
   "keywords": [],
   "author": "",
