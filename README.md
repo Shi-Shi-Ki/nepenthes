@@ -21,3 +21,39 @@ cd terraform/environments/[stating|production]
 
 % terraform apply
 ```
+
+### FrontEnd (Next.js)
+
+##### build
+
+```
+% path/to/nepenthes
+
+% pnpm run build:web
+```
+
+##### run
+
+```
+% path/to/nepenthes
+
+% pnpm run dev:web
+```
+
+### BackEnd (NestJS)
+
+##### build
+
+```
+% path/to/nepenthes
+
+% pnpm run build:api
+```
+
+##### run
+
+```
+% path/to/nepenthes
+
+% pnpm run dev:api
+```
