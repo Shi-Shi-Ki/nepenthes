@@ -1,0 +1,10 @@
+# Terraform関連はPrettierの対象外にする（公式拡張機能に任せるため）
+terraform/
+**/*.tf
+**/*.tfvars
+.terraform/
+
+# その他ビルド成果物など
+dist/
+.next/
+node_modules/
