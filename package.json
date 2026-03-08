@@ -9,6 +9,7 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "clean": "turbo run clean",
+    "docs": "turbo run docs --filter=@nepenthes/api",
     "dev:api": "turbo run dev --filter=@nepenthes/api",
     "dev:web": "turbo run dev --filter=@nepenthes/frontend",
     "build:api": "turbo run build --filter=@nepenthes/api",

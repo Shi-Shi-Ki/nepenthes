@@ -57,3 +57,19 @@ cd terraform/environments/[stating|production]
 
 % pnpm run dev:api
 ```
+
+##### test
+
+```
+% path/to/nepenthes
+
+% pnpm --filter @nepenthes/api exec jest apps/api/src/common/utils/timezone.spec.ts
+```
+
+##### docs
+
+```
+% path/to/nepenthes
+
+% pnpm run docs
+```

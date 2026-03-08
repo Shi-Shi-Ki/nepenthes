@@ -1,0 +1,523 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>@nepenthes/api documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">@nepenthes/api documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  PrivateProps</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/infrastructure/external-api/google-calendar/google-calendar.adapter.service.ts</code>
+        </p>
+
+
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#createdBy" 
+>
+                                            createdBy
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#reservationType" 
+>
+                                            reservationType
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="createdBy"></a>
+                                        <span class="name "><b>createdBy</b>
+                                            <a href="#createdBy">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>createdBy:         <code><a href="../miscellaneous/typealiases.html#Author" target="_self" >Author</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#Author" target="_self" >Author</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="reservationType"></a>
+                                        <span class="name "><b>reservationType</b>
+                                            <a href="#reservationType">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>reservationType:         <code><a href="../miscellaneous/typealiases.html#ReservedIdentifiers" target="_self" >ReservedIdentifiers</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#ReservedIdentifiers" target="_self" >ReservedIdentifiers</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;
+import * as path from &#x27;path&#x27;
+import * as fs from &#x27;fs&#x27;
+import {
+  ICalendarApi,
+  NormalizedCalendarEvent,
+  SyncResult,
+  ReservedIdentifiers,
+  Author,
+} from &#x27;@/application/ports/i-calendar-api.interface&#x27;
+import { IANATimeZone, timezoneSchema } from &#x27;@/common/utils/timezone&#x27;
+import { google, calendar_v3 } from &#x27;googleapis&#x27;
+import { UtilsService } from &#x27;@utils/utils.service&#x27;
+import { GoogleServiceAccountKey } from &#x27;@infrastructure/external-api/google-calendar/types/google-credentials.type&#x27;
+
+interface PrivateProps {
+  reservationType: ReservedIdentifiers
+  createdBy: Author
+}
+
+/**
+ * GoogleカレンダーAPI操作
+ */
+@Injectable()
+export class GoogleCalendarAdapterService implements ICalendarApi {
+  private calendarClient: calendar_v3.Calendar
+
+  constructor(private readonly utilsService: UtilsService) {
+    this.calendarClient &#x3D; this.init()
+  }
+
+  private init() {
+    // todo local/staging/production の切り替え
+
+    // if (this.utilsService.isLocal()) {
+    const clientSecrets &#x3D; fs.readFileSync(
+      path.join(process.cwd(), &#x27;config&#x27;, &#x27;google.credentials.json&#x27;),
+      &#x27;utf8&#x27;,
+    )
+    const clientSecretsJson &#x3D; JSON.parse(
+      clientSecrets,
+    ) as GoogleServiceAccountKey
+    const googlePrivateKey &#x3D; clientSecretsJson.private_key.replace(/\\n/g, &#x27;\n&#x27;)
+    const auth &#x3D; new google.auth.JWT({
+      email: clientSecretsJson.client_email,
+      key: googlePrivateKey,
+      scopes: [
+        &#x27;https://www.googleapis.com/auth/calendar&#x27;,
+        &#x27;https://www.googleapis.com/auth/calendar.events&#x27;,
+      ],
+    })
+
+    return google.calendar({ version: &#x27;v3&#x27;, auth: auth })
+    // }
+  }
+
+  async fetchSyncEvents(
+    resourceId: string,
+    syncToken?: string,
+  ): Promise&lt;SyncResult&gt; {
+    const param: calendar_v3.Params$Resource$Events$List &#x3D; {
+      calendarId: resourceId,
+      ...(syncToken ? { syncToken } : {}),
+    }
+    const result &#x3D; await this.calendarClient.events.list(param)
+
+    if (!result.data.items || result.data.items.length &lt; 1) {
+      return {
+        events: [],
+        nextSyncToken: &#x27;&#x27;,
+      }
+    }
+
+    if (!result.data.timeZone) {
+      throw new Error(&#x27;not found time zone.&#x27;)
+    }
+
+    const events &#x3D; result.data.items.map((item) &#x3D;&gt; {
+      return this.mapToNormalizedCalendarEvent(
+        item,
+        timezoneSchema.parse(result.data.timeZone),
+      )
+    })
+
+    return {
+      events: events,
+      nextSyncToken: result.data.nextSyncToken ?? &#x27;&#x27;,
+    }
+  }
+
+  getListByToday(
+    resourceId: string,
+    timeZone: IANATimeZone,
+  ): Promise&lt;SyncResult&gt; {
+    throw new Error(&#x27;Method not implemented.&#x27;)
+  }
+
+  getRecurringEventInstances(
+    resourceId: string,
+    eventId: string,
+    timeZone: IANATimeZone,
+    startDateTime: Date,
+    endDateTime: Date,
+    isShowDeleted?: boolean,
+  ): Promise&lt;NormalizedCalendarEvent[]&gt; {
+    throw new Error(&#x27;Method not implemented.&#x27;)
+  }
+
+  private mapToNormalizedCalendarEvent(
+    event: calendar_v3.Schema$Event,
+    timeZone: IANATimeZone,
+  ): NormalizedCalendarEvent {
+    if (!event.id) {
+      throw new Error(&#x27;not found event id.&#x27;)
+    }
+
+    const createdTimeStr &#x3D; event.created ?? new Date().toISOString()
+    const updatedTimeStr &#x3D; event.updated ?? new Date().toISOString()
+    const startTimeStr &#x3D;
+      event.start?.dateTime ?? event.start?.date ?? new Date().toISOString()
+    const endTimeStr &#x3D;
+      event.end?.dateTime ?? event.end?.date ?? new Date().toISOString()
+    const visibility &#x3D; event.visibility &#x3D;&#x3D;&#x3D; &#x27;private&#x27; ? &#x27;private&#x27; : &#x27;public&#x27;
+    const title &#x3D;
+      visibility &#x3D;&#x3D;&#x3D; &#x27;private&#x27;
+        ? &#x27;予定あり (非公開)&#x27;
+        : (event.summary ?? &#x27;タイトルなし&#x27;)
+    const description &#x3D;
+      visibility &#x3D;&#x3D;&#x3D; &#x27;private&#x27; ? &#x27;予定あり (非公開)&#x27; : (event.description ?? &#x27;&#x27;)
+    const privateProps &#x3D; this.mapToPrivateProps(event)
+    const reservationType &#x3D; privateProps.reservationType
+    const createdBy &#x3D; privateProps.createdBy
+
+    if (event.status &#x3D;&#x3D;&#x3D; &#x27;cancelled&#x27;) {
+      return {
+        id: event.id,
+        status: &#x27;delete&#x27;,
+        timeZone: timeZone,
+        created: new Date(createdTimeStr),
+        updated: new Date(updatedTimeStr),
+        startTime: new Date(startTimeStr),
+        endTime: new Date(endTimeStr),
+        isAllDayUse: false,
+        title: title,
+        description: description,
+        visibility: visibility,
+        reservationType: reservationType,
+        createdBy: createdBy,
+      }
+    }
+
+    return {
+      id: event.id,
+      status: &#x27;upsert&#x27;,
+      timeZone: timeZone,
+      created: new Date(createdTimeStr),
+      updated: new Date(updatedTimeStr),
+      startTime: new Date(startTimeStr),
+      endTime: new Date(endTimeStr),
+      isAllDayUse: false,
+      title: title,
+      description: description,
+      visibility: visibility,
+      reservationType: reservationType,
+      createdBy: createdBy,
+    }
+  }
+
+  private mapToPrivateProps(property: calendar_v3.Schema$Event): PrivateProps {
+    const extendedProperties &#x3D; property.extendedProperties
+    if (!extendedProperties || !extendedProperties.private) {
+      return {
+        reservationType: &#x27;none&#x27;,
+        createdBy: &#x27;SYSTEM&#x27;,
+      }
+    }
+
+    return {
+      reservationType:
+        extendedProperties.private.reservationType &#x3D;&#x3D;&#x3D; &#x27;advance&#x27;
+          ? &#x27;advance&#x27;
+          : &#x27;walk_in&#x27;,
+      createdBy:
+        extendedProperties.private.createdBy &#x3D;&#x3D;&#x3D; &#x27;USER&#x27; ? &#x27;USER&#x27; : &#x27;SYSTEM&#x27;,
+    }
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'PrivateProps.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
