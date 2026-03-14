@@ -21,6 +21,26 @@
     },
     "docs": {
       "cache": false
+    },
+    "docker:ps": {
+      "cache": false
+    },
+    "docker:up": {
+      "cache": false
+    },
+    "docker:stop": {
+      "cache": false
+    },
+    "docker:down": {
+      "cache": false
+    },
+    "docker:db": {
+      "cache": false,
+      "interactive": true
+    },
+    "docker:mem": {
+      "cache": false,
+      "interactive": true
     }
   }
 }

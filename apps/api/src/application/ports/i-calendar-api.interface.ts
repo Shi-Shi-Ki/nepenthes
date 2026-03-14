@@ -1,4 +1,4 @@
-import { IANATimeZone } from '@utils/timezone'
+import { IANATimeZone } from '@common/utils/timezone'
 
 /*
  * CleanArchitectureの特性上でGoogleが定義している型をimportしない
@@ -6,11 +6,11 @@ import { IANATimeZone } from '@utils/timezone'
  * 型定義も本システム内で使用する最適なものを定義する
  */
 
-export type SyncEventType = 'upsert' | 'delete'
+export type SyncEventType = 'UPSERT' | 'DELETE'
 
-export type Visibility = 'public' | 'private'
+export type Visibility = 'PUBLIC' | 'PRIVATE'
 
-export type ReservedIdentifiers = 'advance' | 'walk_in' | 'none'
+export type ReservedIdentifiers = 'ADVANCE' | 'WALK_IN' | 'NONE'
 
 export type Author = 'SYSTEM' | 'USER'
 

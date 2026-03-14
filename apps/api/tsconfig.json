@@ -27,7 +27,7 @@
       "@domain/*": ["./src/domain/*"],
       "@infrastructure/*": ["./src/infrastructure/*"],
       "@presentation/*": ["./src/presentation/*"],
-      "@utils/*": ["./src/common/utils/*"]
+      "@common/*": ["./src/common/*"]
     }
   }
 }

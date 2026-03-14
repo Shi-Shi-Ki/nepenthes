@@ -8,9 +8,9 @@ import {
   ReservedIdentifiers,
   Author,
 } from '@/application/ports/i-calendar-api.interface'
-import { IANATimeZone, timezoneSchema } from '@/common/utils/timezone'
+import { IANATimeZone, timezoneSchema } from '@common/utils/timezone'
 import { google, calendar_v3 } from 'googleapis'
-import { UtilsService } from '@utils/utils.service'
+import { UtilsService } from '@common/utils/utils.service'
 import { GoogleServiceAccountKey } from '@infrastructure/external-api/google-calendar/types/google-credentials.type'
 
 interface PrivateProps {
@@ -120,13 +120,13 @@ export class GoogleCalendarAdapterService implements ICalendarApi {
       event.start?.dateTime ?? event.start?.date ?? new Date().toISOString()
     const endTimeStr =
       event.end?.dateTime ?? event.end?.date ?? new Date().toISOString()
-    const visibility = event.visibility === 'private' ? 'private' : 'public'
+    const visibility = event.visibility === 'PRIVATE' ? 'PRIVATE' : 'PUBLIC'
     const title =
-      visibility === 'private'
+      visibility === 'PRIVATE'
         ? '予定あり (非公開)'
         : (event.summary ?? 'タイトルなし')
     const description =
-      visibility === 'private' ? '予定あり (非公開)' : (event.description ?? '')
+      visibility === 'PRIVATE' ? '予定あり (非公開)' : (event.description ?? '')
     const privateProps = this.mapToPrivateProps(event)
     const reservationType = privateProps.reservationType
     const createdBy = privateProps.createdBy
@@ -134,7 +134,7 @@ export class GoogleCalendarAdapterService implements ICalendarApi {
     if (event.status === 'cancelled') {
       return {
         id: event.id,
-        status: 'delete',
+        status: 'DELETE',
         timeZone: timeZone,
         created: new Date(createdTimeStr),
         updated: new Date(updatedTimeStr),
@@ -151,7 +151,7 @@ export class GoogleCalendarAdapterService implements ICalendarApi {
 
     return {
       id: event.id,
-      status: 'upsert',
+      status: 'UPSERT',
       timeZone: timeZone,
       created: new Date(createdTimeStr),
       updated: new Date(updatedTimeStr),
@@ -170,16 +170,16 @@ export class GoogleCalendarAdapterService implements ICalendarApi {
     const extendedProperties = property.extendedProperties
     if (!extendedProperties || !extendedProperties.private) {
       return {
-        reservationType: 'none',
+        reservationType: 'NONE',
         createdBy: 'SYSTEM',
       }
     }
 
     return {
       reservationType:
-        extendedProperties.private.reservationType === 'advance'
-          ? 'advance'
-          : 'walk_in',
+        extendedProperties.private.reservationType === 'ADVANCE'
+          ? 'ADVANCE'
+          : 'WALK_IN',
       createdBy:
         extendedProperties.private.createdBy === 'USER' ? 'USER' : 'SYSTEM',
     }

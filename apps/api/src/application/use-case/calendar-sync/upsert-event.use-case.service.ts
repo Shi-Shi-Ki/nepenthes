@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common'
 import type { ICalendarApi } from '@/application/ports/i-calendar-api.interface'
-import { GOOGLE_CALENDAR_ADAPTER_SERVICE } from '@/common/utils/types'
-import { timezoneSchema } from '@/common/utils/timezone'
+import { GOOGLE_CALENDAR_ADAPTER_SERVICE } from '@common/utils/types'
+import { timezoneSchema } from '@common/utils/timezone'
 
 /**
  * カレンダーイベントの同期 ユースケース
