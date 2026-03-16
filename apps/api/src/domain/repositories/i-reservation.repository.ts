@@ -10,7 +10,7 @@ export const ReservationSchema = z.object({
   description: z.string(),
   visibility: z.enum(['PUBLIC', 'PRIVATE']),
 })
-export type ReservationRecode = z.infer<typeof ReservationSchema>
+export type ReservationRecord = z.infer<typeof ReservationSchema>
 
 /**
  * 会議室予約状況
@@ -20,23 +20,23 @@ export interface IReservationRepository {
    * 予約情報の取得
    * @param eventId イベントID
    */
-  find(eventId: string): Promise<ReservationRecode | null>
+  find(eventId: string): Promise<ReservationRecord | null>
 
   /**
    * 予約データの作成
    * @param recode 予約データ
    */
-  make(recode: ReservationRecode): Promise<boolean>
+  make(recode: ReservationRecord): Promise<void>
 
   /**
    * 予約情報の更新
    * @param recode 予約データ
    */
-  update(recode: ReservationRecode): Promise<boolean>
+  update(recode: ReservationRecord): Promise<void>
 
   /**
    * 予約のキャンセル
    * @param eventId イベントID
    */
-  cancel(eventId: string): Promise<boolean>
+  cancel(eventId: string): Promise<void>
 }

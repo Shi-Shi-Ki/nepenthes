@@ -20,10 +20,10 @@ export abstract class DynamodbBaseRepository {
 
   constructor(
     protected readonly tableName: string,
-    protected readonly utils: UtilsService,
+    protected readonly utilsService: UtilsService,
   ) {
     this.client = new DynamoDBClient({
-      region: this.utils.getEnvValueOrFail<string>('REGION'),
+      region: this.utilsService.getEnvValueOrFail<string>('REGION'),
       endpoint: this.getEndpoint(),
     })
     this.docClient = DynamoDBDocumentClient.from(this.client)
@@ -103,9 +103,9 @@ export abstract class DynamodbBaseRepository {
   private getEndpoint() {
     const endpoint =
       'http://' +
-      this.utils.getEnvValueOrFail<string>('DYNAMODB_OUTER_HOST') +
+      this.utilsService.getEnvValueOrFail<string>('DYNAMODB_OUTER_HOST') +
       ':' +
-      this.utils.getEnvValueOrFail<string>('DYNAMODB_OUTER_PORT')
+      this.utilsService.getEnvValueOrFail<string>('DYNAMODB_OUTER_PORT')
     return endpoint
   }
 }

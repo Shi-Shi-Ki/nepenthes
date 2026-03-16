@@ -41,6 +41,18 @@
     "docker:mem": {
       "cache": false,
       "interactive": true
+    },
+    "drizzle:studio": {
+      "cache": false
+    },
+    "drizzle:generate": {
+      "cache": false
+    },
+    "drizzle:migrate": {
+      "cache": false
+    },
+    "drizzle:push": {
+      "cache": false
     }
   }
 }

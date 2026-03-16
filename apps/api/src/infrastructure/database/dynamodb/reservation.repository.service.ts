@@ -1,6 +1,6 @@
 import {
   IReservationRepository,
-  ReservationRecode,
+  ReservationRecord,
   ReservationSchema,
 } from '@/domain/repositories/i-reservation.repository'
 import { Injectable } from '@nestjs/common'
@@ -15,23 +15,23 @@ export class ReservationRepositoryService
   extends DynamodbBaseRepository
   implements IReservationRepository
 {
-  constructor(utils: UtilsService) {
-    super('Reservation', utils)
+  constructor(utilsService: UtilsService) {
+    super('Reservation', utilsService)
   }
 
-  async find(eventId: string): Promise<ReservationRecode | null> {
+  async find(eventId: string): Promise<ReservationRecord | null> {
     return await this.get({ event_id: eventId }, ReservationSchema)
   }
 
-  async make(recode: ReservationRecode): Promise<boolean> {
-    return await this.put(recode)
+  async make(recode: ReservationRecord): Promise<void> {
+    await this.put(recode)
   }
 
-  async update(recode: ReservationRecode): Promise<boolean> {
-    return await this.put(recode)
+  async update(recode: ReservationRecord): Promise<void> {
+    await this.put(recode)
   }
 
-  async cancel(eventId: string): Promise<boolean> {
-    return await this.del({ event_id: eventId })
+  async cancel(eventId: string): Promise<void> {
+    await this.del({ event_id: eventId })
   }
 }
