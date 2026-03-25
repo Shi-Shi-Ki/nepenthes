@@ -1,3 +1,8 @@
+import {
+  Author,
+  ReservedIdentifiers,
+  Visibility,
+} from '@/domain/models/reservation.types'
 import { IANATimeZone } from '@common/utils/timezone'
 
 /*
@@ -7,12 +12,6 @@ import { IANATimeZone } from '@common/utils/timezone'
  */
 
 export type SyncEventType = 'UPSERT' | 'DELETE'
-
-export type Visibility = 'PUBLIC' | 'PRIVATE'
-
-export type ReservedIdentifiers = 'ADVANCE' | 'WALK_IN' | 'NONE'
-
-export type Author = 'SYSTEM' | 'USER'
 
 export interface NormalizedCalendarEvent {
   id: string

@@ -13,6 +13,8 @@
     "docker:ps": "turbo run docker:ps --filter=@nepenthes/api",
     "docker:up": "turbo run docker:up --filter=@nepenthes/api",
     "docker:stop": "turbo run docker:stop --filter=@nepenthes/api",
+    "docker:down": "turbo run docker:down --filter=@nepenthes/api",
+    "docker:logs": "turbo run docker:logs --filter=@nepenthes/api",
     "docker:db": "turbo run docker:db --filter=@nepenthes/api",
     "docker:mem": "turbo run docker:mem --filter=@nepenthes/api",
     "drizzle:studio": "turbo run drizzle:studio --filter=@nepenthes/api",
@@ -22,7 +24,8 @@
     "dev:api": "turbo run dev --filter=@nepenthes/api",
     "dev:web": "turbo run dev --filter=@nepenthes/frontend",
     "build:api": "turbo run build --filter=@nepenthes/api",
-    "build:web": "turbo run build --filter=@nepenthes/frontend"
+    "build:web": "turbo run build --filter=@nepenthes/frontend",
+    "worker:tsc": "turbo run tsc --filter=@nepenthes/workers"
   },
   "keywords": [],
   "author": "",
