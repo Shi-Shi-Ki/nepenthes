@@ -1,0 +1,62 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:9.6
+    container_name: db
+    volumes:
+      - db-store:/var/lib/mysql
+      - ./logs:/var/log/mysql
+      - ./config/my.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_USER_PASS}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASS}
+      - TZ=${TIMEZONE}
+    ports:
+      - ${DB_PORT}:3306
+    env_file:
+      - .env
+    networks:
+      - app-network
+
+  memcached:
+    image: memcached:1.6
+    container_name: mem
+    ports:
+      - '${MEMCACHED_PORT}:11211'
+    env_file:
+      - .env
+    networks:
+      - app-network
+
+  local-stack:
+    image: localstack/localstack:4.14
+    container_name: local-stack
+    env_file:
+      - .env
+    hostname: ${LOCAL_STACK_HOST_NAME}
+    ports:
+      - '${LOCAL_STACK_PORT}:4566'
+    environment:
+      - SERVICES=dynamodb,lambda,events,scheduler,apigateway,sqs,sns,s3,logs,iam,kms,secretsmanager
+      - DEFAULT_REGION=${REGION}
+      - AWS_DEFAULT_REGION=${REGION}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - LAMBDA_DOCKER_NETWORK=app-network
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    networks:
+      - app-network
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+
+volumes:
+  db-store:
+
+networks:
+  app-network:
+    name: app-network
+    driver: bridge

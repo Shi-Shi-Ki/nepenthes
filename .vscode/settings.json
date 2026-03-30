@@ -33,6 +33,6 @@
   },
 
   "files.exclude": {
-    "**/*.spec.ts": true
+    "**/*.spec.ts": false
   }
 }

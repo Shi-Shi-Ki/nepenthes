@@ -18,6 +18,50 @@
     },
     "clean": {
       "cache": false
+    },
+    "docs": {
+      "cache": false
+    },
+    "docker:ps": {
+      "cache": false
+    },
+    "docker:up": {
+      "cache": false
+    },
+    "docker:stop": {
+      "cache": false
+    },
+    "docker:restart": {
+      "cache": false
+    },
+    "docker:down": {
+      "cache": false
+    },
+    "docker:logs": {
+      "cache": false
+    },
+    "docker:db": {
+      "cache": false,
+      "interactive": true
+    },
+    "docker:mem": {
+      "cache": false,
+      "interactive": true
+    },
+    "drizzle:studio": {
+      "cache": false
+    },
+    "drizzle:generate": {
+      "cache": false
+    },
+    "drizzle:migrate": {
+      "cache": false
+    },
+    "drizzle:push": {
+      "cache": false
+    },
+    "tsc": {
+      "cache": false
     }
   }
 }
