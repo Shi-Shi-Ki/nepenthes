@@ -30,6 +30,7 @@
     "typescript-eslint": "^8.20.0"
   },
   "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.1019.0",
     "turbo": "^2.8.3"
   }
 }
