@@ -39,7 +39,7 @@ services:
     ports:
       - '${LOCAL_STACK_PORT}:4566'
     environment:
-      - SERVICES=dynamodb,lambda,events,scheduler,apigateway,sqs,sns,s3,logs,iam
+      - SERVICES=dynamodb,lambda,events,scheduler,apigateway,sqs,sns,s3,logs,iam,kms,secretsmanager
       - DEFAULT_REGION=${REGION}
       - AWS_DEFAULT_REGION=${REGION}
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}

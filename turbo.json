@@ -31,6 +31,9 @@
     "docker:stop": {
       "cache": false
     },
+    "docker:restart": {
+      "cache": false
+    },
     "docker:down": {
       "cache": false
     },

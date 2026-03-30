@@ -13,6 +13,7 @@
     "docker:ps": "turbo run docker:ps --filter=@nepenthes/api",
     "docker:up": "turbo run docker:up --filter=@nepenthes/api",
     "docker:stop": "turbo run docker:stop --filter=@nepenthes/api",
+    "docker:restart": "turbo run docker:restart --filter=@nepenthes/api",
     "docker:down": "turbo run docker:down --filter=@nepenthes/api",
     "docker:logs": "turbo run docker:logs --filter=@nepenthes/api",
     "docker:db": "turbo run docker:db --filter=@nepenthes/api",

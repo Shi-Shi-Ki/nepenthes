@@ -43,7 +43,7 @@ resource "aws_iam_role_policy_attachment" "lambda_basic_execution" {
 }
 
 resource "aws_iam_role_policy" "lambda_sqs_policy" {
-  name = "lambda-sqs-execution-policy"
+  name = "LambdaSqsExecutionPolicy"
   role = aws_iam_role.lambda_worker_role.id
 
   policy = jsonencode({
@@ -61,7 +61,7 @@ resource "aws_iam_role_policy" "lambda_sqs_policy" {
 }
 
 resource "aws_iam_role_policy" "apigw_sqs_policy" {
-  name = "apigateway-sqs-policy"
+  name = "ApigatewaySqsPolicy"
   role = aws_iam_role.api_gateway_role.id
 
   policy = jsonencode({
@@ -72,6 +72,24 @@ resource "aws_iam_role_policy" "apigw_sqs_policy" {
       Resource = aws_sqs_queue.webhook_queue.arn
     }]
   })
+}
+
+data "aws_iam_policy_document" "lambda_secrets_policy" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "secretsmanager:GetSecretValue"
+    ]
+    resources = [
+      var.api_server_secret_arn,
+    ]
+  }
+}
+
+resource "aws_iam_role_policy" "lambda_secrets_access" {
+  name   = "SecretsAccessOnlyPolicy"
+  role   = aws_iam_role.lambda_worker_role.name
+  policy = data.aws_iam_policy_document.lambda_secrets_policy.json
 }
 
 # ---------------------------------------------------------
@@ -216,7 +234,8 @@ resource "aws_lambda_function" "calendar_webhook_trigger" {
   source_code_hash = data.archive_file.calendar_webhook_source.output_base64sha256
   environment {
     variables = {
-      API_URL = "http://host.docker.internal:3001"
+      API_URL        = "http://host.docker.internal:3001",
+      API_SECRET_ARN = var.api_server_secret_arn
     }
   }
 }
@@ -265,7 +284,8 @@ resource "aws_lambda_function" "calendar_webhook_dlq_checker" {
   source_code_hash = data.archive_file.calendar_webhook_source.output_base64sha256
   environment {
     variables = {
-      API_URL = "http://host.docker.internal:3001"
+      API_URL        = "http://host.docker.internal:3001",
+      API_SECRET_ARN = var.api_server_secret_arn
     }
   }
 }
@@ -309,7 +329,8 @@ resource "aws_lambda_function" "cron_regular_monitoring_of_reservation" {
   source_code_hash = data.archive_file.calendar_webhook_source.output_base64sha256
   environment {
     variables = {
-      API_URL = "http://host.docker.internal:3001"
+      API_URL        = "http://host.docker.internal:3001",
+      API_SECRET_ARN = var.api_server_secret_arn
     }
   }
 }
@@ -352,7 +373,8 @@ resource "aws_lambda_function" "cron_daily_create_reservation" {
   role          = aws_iam_role.lambda_worker_role.arn
   environment {
     variables = {
-      API_URL = "http://host.docker.internal:3001"
+      API_URL        = "http://host.docker.internal:3001",
+      API_SECRET_ARN = var.api_server_secret_arn
     }
   }
 }
@@ -373,7 +395,8 @@ resource "aws_lambda_function" "reservation_auto_release" {
   role          = aws_iam_role.lambda_worker_role.arn
   environment {
     variables = {
-      API_URL = "http://host.docker.internal:3001"
+      API_URL        = "http://host.docker.internal:3001",
+      API_SECRET_ARN = var.api_server_secret_arn
     }
   }
 }

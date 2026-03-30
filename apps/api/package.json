@@ -14,6 +14,7 @@
     "docker:ps": "docker compose ps",
     "docker:up": "docker compose up -d",
     "docker:stop": "docker compose stop",
+    "docker:restart": "docker compose restart",
     "docker:down": "docker compose down",
     "docker:logs": "docker compose logs",
     "docker:db": "docker compose exec mysql bash",

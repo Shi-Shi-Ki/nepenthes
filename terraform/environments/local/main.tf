@@ -21,6 +21,8 @@ provider "aws" {
     apigatewayv2   = "http://localhost:4566"
     cloudwatchlogs = "http://localhost:4566"
     sts            = "http://localhost:4566"
+    secretsmanager = "http://localhost:4566"
+    kms            = "http://localhost:4566"
   }
 }
 
@@ -28,15 +30,18 @@ provider "aws" {
 # 構築フラグ（LocalStackだけで構築するものを絞る）
 # ---------------------------------------------------------
 locals {
-  # ローカルでは構築しないもの
   enable_network     = false
   enable_ingress     = false
-  enable_security    = false
   enable_integration = false
+  enable_security    = true # 一部作成
+  enable_serverless  = true # 一部作成
+  enable_database    = true # 一部作成
+}
 
-  # ローカルで構築するもの
-  enable_serverless = true
-  enable_database   = true
+# デプロイする環境名 (local, staging, production)
+variable "env" {
+  type    = string
+  default = "local"
 }
 
 # ---------------------------------------------------------
@@ -45,12 +50,12 @@ locals {
 module "network" {
   source = "../../modules/network"
   count  = local.enable_network ? 1 : 0
-  env    = "local"
+  env    = var.env
 }
 
 module "database" {
   source = "../../modules/database"
-  count  = local.enable_database ? 1 : 0
+  env    = var.env
 }
 
 module "ingress" {
@@ -60,8 +65,7 @@ module "ingress" {
 
 module "security" {
   source      = "../../modules/security"
-  count       = local.enable_security ? 1 : 0
-  env         = "local"
+  env         = var.env
   domain_name = "local"
   zone_id     = "local"
 }
@@ -71,10 +75,17 @@ module "integration" {
   count  = local.enable_integration ? 1 : 0
 }
 
+module "secret" {
+  source = "../../modules/secret"
+  env    = var.env
+}
+
 # ---------------------------------------------------------
 # ローカル用のサーバーレス環境呼び出し
 # ---------------------------------------------------------
 module "local_serverless" {
   source = "../../modules/serverless/local"
   count  = local.enable_serverless ? 1 : 0
+  # Securityモジュールの出力を、Serverlessモジュールに渡す
+  api_server_secret_arn = module.secret.api_server_secret_arn
 }
